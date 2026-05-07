@@ -1,6 +1,7 @@
 import { test, expect } from "@playwright/test";
 import { PageManager } from "../page-objects/pageManager";
 import { faker } from "@faker-js/faker";
+import { argosScreenshot } from "@argos-ci/playwright";
 
 test.describe.configure({ mode: "serial" });
 
@@ -58,5 +59,7 @@ test("parametrized methods", async ({ page }) => {
 test.only("testing with argos ci2", async ({ page }) => {
   const pm = new PageManager(page);
   await pm.navigateTo().formLayoutsPage();
+  await argosScreenshot(page, "form layout page");
   await pm.navigateTo().datepickerPage();
+  await argosScreenshot(page, "datepicker page");
 });
